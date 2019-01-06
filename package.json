@@ -13,7 +13,7 @@
     "test:update": "jest --silent -u",
     "test:watch": "jest --silent --watch",
     "test:coverage": "jest --silent --coverage",
-    "docs": "docsify serve docs",
+    "docs": "docsify serve docs"
   },
   "repository": {
     "type": "git",
