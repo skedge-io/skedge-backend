@@ -1,6 +1,8 @@
 const Business = require('../models/Business.js');
 const reqLogin = require('../middlewares/requireLogin.js');
 const reqAdmin = require('../middlewares/requireAdmin.js');
+const configKeys = require('../config/keys.js');
+
 
 module.exports = (passport, app, User) => {
 
@@ -17,12 +19,12 @@ module.exports = (passport, app, User) => {
       callbackURL : '/auth/google/callback'
     }), (req, res) => {
      if(req.user.name){
-       res.redirect('/dashboard');
+       res.redirect(`${configKeys.DOMAIN}/dashboard`);
      }else{
        User.findById(req.user._id).then((user) => {
          user.admin = true;
          user.save().then(() => {
-           res.redirect('/account/setup');
+           res.redirect(`${configKeys.DOMAIN}/account/setup');
          });
        })
      }
