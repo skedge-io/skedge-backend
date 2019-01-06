@@ -31,6 +31,13 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Disables CORS
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 //Initalize the texting object
 let texts = {};
 module.exports = { texts };
