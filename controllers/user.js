@@ -19,12 +19,12 @@ module.exports = (passport, app, User) => {
       callbackURL : '/auth/google/callback'
     }), (req, res) => {
      if(req.user.name){
-       res.redirect(`${configKeys.DOMAIN}/dashboard`);
+       res.redirect(`${configKeys.domain}/dashboard`);
      }else{
        User.findById(req.user._id).then((user) => {
          user.admin = true;
          user.save().then(() => {
-           res.redirect(`${configKeys.DOMAIN}/account/setup');
+           res.redirect(`${configKeys.domain}/account/setup');
          });
        })
      }
