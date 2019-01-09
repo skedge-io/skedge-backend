@@ -3,7 +3,6 @@ const reqLogin = require('../middlewares/requireLogin.js');
 const reqAdmin = require('../middlewares/requireAdmin.js');
 const configKeys = require('../config/keys.js');
 
-
 module.exports = (passport, app, User) => {
 
   app.get('/auth/google', passport.authenticate('google',
@@ -30,6 +29,25 @@ module.exports = (passport, app, User) => {
      }
     }
   );
+
+  app.get('/auth/outlook',
+    passport.authenticate('windowslive', {
+      scope: [
+        'openid',
+        'profile',
+        'offline_access',
+        'https://outlook.office.com/Mail.Read'
+      ],
+      callbackURL : '/auth/outlook/callback',
+    })
+  );
+
+app.get('/auth/outlook/callback',
+  passport.authenticate('windowslive', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.send(req.user)
+  });
 
   app.get('business/register/auth/google', passport.authenticate('google',
     {
@@ -58,7 +76,7 @@ module.exports = (passport, app, User) => {
 
 
   app.get('/api/current_user', (req, res) => {
-      res.send(req.user);
+    res.send(req.user);
   })
 
   // Finish User Account

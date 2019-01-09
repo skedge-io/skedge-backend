@@ -5,11 +5,15 @@ const userSchema = new Schema({
   name : String,
   business : String,
   googleId : String,
-  accessToken : String,
-  refreshToken : String,
+  googleAccessToken : String,
+  googleRefreshToken : String,
+  googleEemail : String,
+  outlookId : String,
+  outlookAccessToken : String,
+  outlookRefreshToken : String,
+  outlookEmail : String,
   phone : String,
-  email : String,
-  admin : { type: Boolean, default: false }
+  admin : { type: Boolean, default: false },
 });
 
 const User = mongoose.model('User', userSchema);

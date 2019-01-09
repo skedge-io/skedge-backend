@@ -42,6 +42,10 @@ app.use(function(req, res, next) {
 let texts = {};
 module.exports = { texts };
 
+app.get('/', (req, res) => {
+  res.send("Welcome to Skedge Api!")
+})
+
 //User Controller and Model
 const User = require("./models/User.js");
 require("./controllers/user.js")(passport, app, User);
