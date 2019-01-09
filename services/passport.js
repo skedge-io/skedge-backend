@@ -47,7 +47,7 @@ let outlookStrategy = new OutlookStrategy(
     clientID : authKeys.outlookClientID,
     clientSecret : authKeys.outlookClientSecret,
     proxy : true,
-    callbackURL : `${authKeys.domain}/auth/outlook/callback`
+    callbackURL : `https://www.skedge-api.com/auth/outlook/calback`
   },
   async (accessToken, refreshToken, profile, done) => {
     console.log("HERE???")
