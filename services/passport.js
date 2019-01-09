@@ -47,10 +47,9 @@ let outlookStrategy = new OutlookStrategy(
     clientID : authKeys.outlookClientID,
     clientSecret : authKeys.outlookClientSecret,
     proxy : true,
-    callbackURL : `https://www.skedge-api.com/auth/outlook/calback`
+    callbackURL : `${authKeys.domain}/auth/outlook/callback`
   },
   async (accessToken, refreshToken, profile, done) => {
-    console.log("HERE???")
     const existingUser = await User.findOne({ outlookId: profile.id})
     if (existingUser) {
       existingUser.accessToken = accessToken;
